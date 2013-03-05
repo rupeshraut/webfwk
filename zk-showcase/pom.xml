@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>ZK Show Case</name>
 	<build>
-	<finalName>zk-showcase</finalName>
+		<finalName>zk-showcase</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -21,6 +21,7 @@
 		</plugins>
 	</build>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<zk.version>6.5.1.1</zk.version>
 		<log4j.version>2.0-beta4</log4j.version>
 	</properties>
