@@ -30,11 +30,13 @@
 			<listhead>
 				<listheader label="First Name" width="120px" align="center" />
 				<listheader label="Last Name" width="120px" align="center" />
+				<listheader label="Action" width="120px" align="center" />
 			</listhead>
 			<template name="model" var="var">
 				<listitem>
 					<listcell label="@load(var.firstName)" />
 					<listcell label="@load(var.lastName)" />
+					<listcell><a  onClick="@command('deleteUser', user=var)">delete</a> </listcell>
 				</listitem>
 			</template>
 

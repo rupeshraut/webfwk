@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
@@ -33,8 +34,14 @@ public class UserViewModel {
 	/** The users. */
 	private Collection<User> userList;
 
+	/** The Constant ADD_USER. */
+	private static final String ADD_USER = "Add User";
+
+	/** The Constant EDIT_USER. */
+	private static final String EDIT_USER = "Edit User";
+
 	/** The label. */
-	private String label = "Add User";
+	private String label = ADD_USER;
 
 	/**
 	 * Instantiates a new user view model.
@@ -99,7 +106,7 @@ public class UserViewModel {
 	public void setSelectedUser(User selectedUser) {
 		this.selectedUser = selectedUser;
 		user = selectedUser;
-		setLabel("Edit User");
+		setLabel(EDIT_USER);
 	}
 
 	/**
@@ -133,7 +140,7 @@ public class UserViewModel {
 	public void saveUser() throws ZkShowcaseException {
 		LOGGER.info("{} {}", user.getFirstName(), user.getLastName());
 		userService.save(user);
-		if (!"Edit User".equals(label)) {
+		if (!EDIT_USER.equals(label)) {
 			user = new User();
 		}// if
 
@@ -146,7 +153,22 @@ public class UserViewModel {
 	@NotifyChange({ "user", "fullName", "label" })
 	public void reset() {
 		user = new User();
-		setLabel("Add User");
+		setLabel(ADD_USER);
+	}
+
+	/**
+	 * Delete user.
+	 * 
+	 * @param user
+	 *            the user
+	 */
+	@NotifyChange({ "userList" })
+	@Command
+	public void deleteUser(@BindingParam("user") User user) {
+		userService.delete(user);
+		if (EDIT_USER.equals(label)) {
+			reset();
+		}
 	}
 
 }

@@ -43,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
 	 */
 	@Override
 	public boolean delete(User user) {
-		return false;
+		return DataStore.INSTANCE.delete(user);
 	}
 
 }
