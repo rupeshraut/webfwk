@@ -1,6 +1,43 @@
-<?page title="Auto Generated index.zul"?>
-<window title="Hello World!!" border="normal" width="200px">
+<?page title="User View Model"?>
+<window title="User View Model" border="normal" hflex="true" vflex="true" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('com.dev.zkshowcase.viewmodel.UserViewModel')">
 
-<label value="You are using: ${desktop.webApp.version}"/>
+	<label value="Name : " />
+	<label value="@load(vm.fullName)" />
 
+	<vlayout>
+		<space height="20px" />
+		<hbox vflex="true">
+			<label value="First Name" />
+			<textbox value="@bind(vm.user.firstName)" constraint="no empty" />
+		</hbox>
+		<hbox>
+			<label value="Last Name" />
+			<textbox value="@bind(vm.user.lastName)" constraint="no empty" />
+		</hbox>
+		<hbox>
+			<button onClick="@command('saveUser')" label="@load(vm.label)" />
+			<button onClick="@command('reset')" label="Reset" />
+		</hbox>
+		<space height="20px" />
+	</vlayout>
+
+	<div>
+		<listbox hflex="1" model="@load(vm.userList)" selectedItem="@bind(vm.selectedUser)">
+			<auxhead>
+				<auxheader colspan="2" class="topic">User List</auxheader>
+			</auxhead>
+			<listhead>
+				<listheader label="First Name" width="120px" align="center" />
+				<listheader label="Last Name" width="120px" align="center" />
+			</listhead>
+			<template name="model" var="var">
+				<listitem>
+					<listcell label="@load(var.firstName)" />
+					<listcell label="@load(var.lastName)" />
+				</listitem>
+			</template>
+
+		</listbox>
+	</div>
 </window>
