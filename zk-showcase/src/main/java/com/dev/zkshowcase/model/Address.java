@@ -3,7 +3,7 @@ package com.dev.zkshowcase.model;
 /**
  * The Class Addess.
  */
-public class Addess {
+public class Address {
 
 	/** The street address. */
 	private String streetAddress;
@@ -147,7 +147,7 @@ public class Addess {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Addess other = (Addess) obj;
+		Address other = (Address) obj;
 		if (apartmentNumber == null) {
 			if (other.apartmentNumber != null)
 				return false;

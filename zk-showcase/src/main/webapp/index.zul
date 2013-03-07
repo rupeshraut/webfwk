@@ -1,52 +1,6 @@
 <?page title="User View Model"?>
-<window title="User View Model" border="normal" hflex="true" vflex="true" apply="org.zkoss.bind.BindComposer"
-	viewModel="@id('vm') @init('com.dev.zkshowcase.viewmodel.UserViewModel')">
-	<vlayout>
-		<space height="10px" />
-		<hbox>
-			<label value="Name : " style="font-weight:bold" />
-			<label value="@load(vm.fullName)" />
-		</hbox>
-	</vlayout>
-	<vlayout>
-		<space height="20px" />
-		<hbox vflex="true">
-			<label value="First Name" style="font-weight:bold" />
-			<textbox value="@bind(vm.user.firstName)" constraint="no empty" />
-		</hbox>
-		<hbox>
-			<label value="Last Name" style="font-weight:bold" />
-			<textbox value="@bind(vm.user.lastName)" constraint="no empty" />
-		</hbox>
-		<hbox>
-			<button onClick="@command('saveUser')" label="@load(vm.label)" />
-			<button onClick="@command('reset')" label="Reset" />
-		</hbox>
-		<space height="20px" />
-	</vlayout>
-
+<window title="" border="none" hflex="true" vflex="true" width="100%" height="100%">
 	<div>
-		<listbox hflex="1" model="@load(vm.userList)" selectedItem="@bind(vm.selectedUser)">
-			<auxhead>
-				<auxheader colspan="2" style="font-weight:bold" zclass="" sclass="">User List</auxheader>
-			</auxhead>
-			<listhead>
-				<listheader label="First Name" width="120px" align="center" sort="auto(firstName)" />
-				<listheader label="Last Name" width="120px" align="center" sort="auto(lastName)" />
-				<listheader label="Action" width="120px" align="center" />
-			</listhead>
-			<template name="model" var="var">
-				<listitem>
-					<listcell label="@load(var.firstName)" />
-					<listcell label="@load(var.lastName)" />
-					<listcell>
-						<a onClick="@command('editUser', user=var)">edit</a>
-						/
-						<a onClick="@command('deleteUser', user=var)">delete</a>
-					</listcell>
-				</listitem>
-			</template>
-
-		</listbox>
+		<include src="/WEB-INF/user/user.zul" />
 	</div>
 </window>

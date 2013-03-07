@@ -24,7 +24,7 @@ public class User {
 	private String email;
 
 	/** The address. */
-	private Addess address;
+	private Address address = new Address();
 
 	/**
 	 * Gets the id.
@@ -145,7 +145,7 @@ public class User {
 	 * 
 	 * @return the address
 	 */
-	public Addess getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
@@ -155,7 +155,7 @@ public class User {
 	 * @param address
 	 *            the new address
 	 */
-	public void setAddress(Addess address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

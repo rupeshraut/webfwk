@@ -10,8 +10,11 @@ import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.Window;
 
 import com.dev.zkshowcase.exception.ZkShowcaseException;
 import com.dev.zkshowcase.model.User;
@@ -47,6 +50,10 @@ public class UserViewModel {
 
 	/** The label. */
 	private String label = ADD_USER;
+	
+	/** The session. */
+	@WireVariable
+	private Session session;
 
 	/**
 	 * Instantiates a new user view model.
@@ -188,6 +195,19 @@ public class UserViewModel {
 	@Command
 	public void editUser(@BindingParam("user") User user) {
 		setSelectedUser(user);
+	}
+
+	/**
+	 * Open address dialog.
+	 *
+	 * @param user the user
+	 */
+	@Command
+	public void openAddressDialog(@BindingParam("user") User user) {
+		session.removeAttribute("SESSION_USER");
+		session.setAttribute("SESSION_USER", user);		
+		final Window window = (Window) Executions.createComponents("/WEB-INF/user/address.zul", null, null);
+		window.doModal();
 	}
 
 }
