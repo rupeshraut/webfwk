@@ -33,7 +33,7 @@ public enum DataStore {
 	public void add(final User user) {
 
 		if (USER_MAP.containsKey(user.getId())) {
-			LOGGER.info("replacing an existing user to data store {}", user.toString());
+			LOGGER.info("replacing an existing user in data store {}", user.toString());
 			USER_MAP.replace(user.getId(), user);
 		} else {
 			LOGGER.info("adding new user to data store {}", user.toString());
