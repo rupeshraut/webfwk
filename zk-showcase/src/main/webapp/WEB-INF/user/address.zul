@@ -1,0 +1,43 @@
+<?page title="User Managment" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addressWin" title="Address Managment" border="normal" width="500px"  closable="true" action="show: slideDown;hide: slideUp"
+		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.dev.zkshowcase.viewmodel.AddressViewModel')">
+		<div form="@id('address_') @load(vm.user.address) @save(vm.user.address, before='save')">
+			<space height="10px" />
+			<grid hflex="true">
+				<columns>
+					<column align="left" width="200px"></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<label value="Street Address" />
+						<textbox value="@bind(address_.streetAddress)" constraint="no empty" />
+					</row>
+					<row>
+						<label value="Apartment #" />
+						<textbox value="@bind(address_.apartmentNumber)" constraint="no empty" maxlength="5"/>
+					</row>
+					<row>
+						<label value="City" />
+						<textbox value="@bind(address_.city)" constraint="no empty" />
+					</row>
+					<row>
+						<label value="State" />
+						<textbox value="@bind(address_.state)" constraint="no empty" maxlength="2"/>
+					</row>
+					<row>
+						<label value="Zip Code" />
+						<intbox value="@bind(address_.zipCode)" constraint="no empty" maxlength="5"/>
+					</row>
+					<row spans="2">
+						<cell align="right">
+							<button onClick="@command('save')" label="Save" />
+						</cell>
+					</row>
+				</rows>
+
+			</grid>
+		</div>
+	</window>
+</zk>

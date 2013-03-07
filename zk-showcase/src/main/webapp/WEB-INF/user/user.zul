@@ -1,0 +1,80 @@
+<?page title="User Managment" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.dev.zkshowcase.viewmodel.UserViewModel')" vflex="true">
+		<borderlayout height="1000px">
+			<north vflex="min" border="none" title="User Management" collapsible="true" open="true">
+				<div form="@id('user_') @load(vm.user) @save(vm.user, before='saveUser')">
+					<space height="10px" />
+					<grid hflex="true">
+						<columns>
+							<column align="left" width="200px"></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<label value="First Name" />
+								<textbox value="@bind(user_.firstName)" constraint="no empty" />
+							</row>
+							<row>
+								<label value="Last Name" />
+								<textbox value="@bind(user_.lastName)" constraint="no empty" />
+							</row>
+							<row>
+								<label value="Age" />
+								<intbox value="@bind(user_.age)" constraint="no empty" />
+							</row>
+							<row>
+								<label value="Phone #" />
+								<textbox value="@bind(user_.phoneNumber)" constraint="no empty" />
+							</row>
+							<row>
+								<label value="E-Mail" />
+								<textbox value="@bind(user_.email)" constraint="no empty" />
+							</row>
+							<row spans="2">
+								<hbox align="end">
+									<button onClick="@command('saveUser')" label="@load(vm.label)" />
+									<button onClick="@command('reset')" label="Reset" />
+								</hbox>
+							</row>
+						</rows>
+
+					</grid>
+				</div>
+			</north>
+			<center title="User List" border="none" vflex="max">
+				<div>
+					<grid model="@load(vm.userList)">
+						<columns>
+							<column width="20%" sort="auto(firstName)">First Name</column>
+							<column width="20%" sort="auto(lastName)">Last Name</column>
+							<column width="5%" sort="auto(age)">Age</column>
+							<column width="20%" sort="auto(phoneNumber)">Phone #</column>
+							<column width="20%" sort="auto(email)">E-Mail</column>
+							<column width="20%" align="center">Action</column>
+						</columns>
+						<rows>
+							<template name="model" var="var">
+								<row>
+									<label value="@load(var.firstName)" />
+									<label value="@load(var.lastName)" />
+									<label value="@load(var.age)" />
+									<label value="@load(var.phoneNumber)" />
+									<label value="@load(var.email)" />
+									<hbox>
+										<a onClick="@command('openAddressDialog', user=var)">manage address</a>
+										/
+										<a onClick="@command('editUser', user=var)">edit</a>
+										/
+										<a onClick="@command('deleteUser', user=var)">delete</a>
+									</hbox>
+								</row>
+							</template>
+						</rows>
+					</grid>
+				</div>
+			</center>
+			<south border="none" />
+		</borderlayout>
+	</window>
+</zk>
