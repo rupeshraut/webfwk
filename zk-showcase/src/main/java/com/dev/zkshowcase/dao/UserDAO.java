@@ -3,7 +3,7 @@ package com.dev.zkshowcase.dao;
 import java.util.Collection;
 
 import com.dev.zkshowcase.exception.ZkShowcaseException;
-import com.dev.zkshowcase.viewmodel.User;
+import com.dev.zkshowcase.model.User;
 
 /**
  * The Interface UserDAO.

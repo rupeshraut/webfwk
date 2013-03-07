@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dev.zkshowcase.data.DataStore;
 import com.dev.zkshowcase.exception.ZkShowcaseException;
-import com.dev.zkshowcase.viewmodel.User;
+import com.dev.zkshowcase.model.User;
 
 /**
  * The Class UserDAOImpl.
@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 	 *            the user
 	 * @return the user
 	 * @throws ZkShowcaseException 
-	 * @see com.dev.zkshowcase.dao.UserDAO#save(com.dev.zkshowcase.viewmodel.User)
+	 * @see com.dev.zkshowcase.dao.UserDAO#save(com.dev.zkshowcase.model.User)
 	 */
 	@Override
 	public void save(User user) throws ZkShowcaseException {
@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 	 * @param user
 	 *            the user
 	 * @return true, if successful
-	 * @see com.dev.zkshowcase.dao.UserDAO#delete(com.dev.zkshowcase.viewmodel.User)
+	 * @see com.dev.zkshowcase.dao.UserDAO#delete(com.dev.zkshowcase.model.User)
 	 */
 	@Override
 	public boolean delete(User user) {

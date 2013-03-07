@@ -1,6 +1,7 @@
 package com.dev.zkshowcase.viewmodel;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -9,14 +10,17 @@ import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
-import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 import com.dev.zkshowcase.exception.ZkShowcaseException;
+import com.dev.zkshowcase.model.User;
 import com.dev.zkshowcase.service.UserService;
 
 /**
  * The Class UserViewModel.
  */
+@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class UserViewModel {
 
 	/** The Constant LOGGER. */
@@ -29,6 +33,7 @@ public class UserViewModel {
 	private User selectedUser;
 
 	/** The user service. */
+	@WireVariable
 	private UserService userService;
 
 	/** The users. */
@@ -74,7 +79,6 @@ public class UserViewModel {
 	@Init
 	public void initialize() {
 		user = new User();
-		userService = (UserService) SpringUtil.getBean("userService");
 		userList = userService.listUsers();
 	}
 
@@ -139,6 +143,9 @@ public class UserViewModel {
 	@NotifyChange({ "user", "fullName", "userList" })
 	public void saveUser() throws ZkShowcaseException {
 		LOGGER.info("{} {}", user.getFirstName(), user.getLastName());
+		if (StringUtils.isBlank(user.getId())) {
+			user.setId(UUID.randomUUID().toString());
+		}// if
 		userService.save(user);
 		if (!EDIT_USER.equals(label)) {
 			user = new User();
@@ -162,13 +169,25 @@ public class UserViewModel {
 	 * @param user
 	 *            the user
 	 */
-	@NotifyChange({ "userList" })
+	@NotifyChange({ "user", "fullName", "label", "userList" })
 	@Command
 	public void deleteUser(@BindingParam("user") User user) {
 		userService.delete(user);
 		if (EDIT_USER.equals(label)) {
 			reset();
 		}
+	}
+
+	/**
+	 * Edits the user.
+	 * 
+	 * @param user
+	 *            the user
+	 */
+	@NotifyChange({ "user", "fullName", "label" })
+	@Command
+	public void editUser(@BindingParam("user") User user) {
+		setSelectedUser(user);
 	}
 
 }

@@ -1,9 +1,12 @@
-package com.dev.zkshowcase.viewmodel;
+package com.dev.zkshowcase.model;
 
 /**
  * The Class User.
  */
 public class User {
+
+	/** The id. */
+	private String id;
 
 	/** The first name. */
 	private String firstName;
@@ -22,6 +25,25 @@ public class User {
 
 	/** The address. */
 	private Addess address;
+
+	/**
+	 * Gets the id.
+	 * 
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the id.
+	 * 
+	 * @param id
+	 *            the new id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * Gets the first name.
@@ -150,17 +172,15 @@ public class User {
 		result = prime * result + age;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
 
-	/**
-	 * Equals.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param obj
-	 *            the obj
-	 * @return true, if successful
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -189,6 +209,11 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
@@ -202,16 +227,17 @@ public class User {
 		return true;
 	}
 
-	/**
-	 * To string.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @return the string
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [firstName=");
+		builder.append("User [id=");
+		builder.append(id);
+		builder.append(", firstName=");
 		builder.append(firstName);
 		builder.append(", lastName=");
 		builder.append(lastName);

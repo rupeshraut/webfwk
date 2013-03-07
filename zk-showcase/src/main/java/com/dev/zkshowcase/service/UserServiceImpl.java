@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dev.zkshowcase.dao.UserDAO;
 import com.dev.zkshowcase.exception.ZkShowcaseException;
-import com.dev.zkshowcase.viewmodel.User;
+import com.dev.zkshowcase.model.User;
 
 /**
  * The Class UserServiceImpl.
@@ -48,8 +48,7 @@ public class UserServiceImpl implements UserService {
 	 *            the user
 	 * @return the user
 	 * @throws ZkShowcaseException 
-	 * @see com.dev.zkshowcase.service.UserService#save(com.dev.zkshowcase.viewmodel
-	 *      .User)
+	 * @see com.dev.zkshowcase.service.UserService#save(com.dev.zkshowcase.model.User)
 	 */
 	@Override
 	public void save(final User user) throws ZkShowcaseException {
@@ -62,8 +61,7 @@ public class UserServiceImpl implements UserService {
 	 * @param user
 	 *            the user
 	 * @return true, if successful
-	 * @see com.dev.zkshowcase.service.UserService#delete(com.dev.zkshowcase.viewmodel
-	 *      .User)
+	 * @see com.dev.zkshowcase.service.UserService#delete(com.dev.zkshowcase.model.User)
 	 */
 	@Override
 	public boolean delete(final User user) {

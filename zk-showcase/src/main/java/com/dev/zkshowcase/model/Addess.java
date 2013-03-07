@@ -1,4 +1,4 @@
-package com.dev.zkshowcase.viewmodel;
+package com.dev.zkshowcase.model;
 
 /**
  * The Class Addess.
