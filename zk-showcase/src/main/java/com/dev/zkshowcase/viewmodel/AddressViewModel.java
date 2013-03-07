@@ -21,6 +21,7 @@ import com.dev.zkshowcase.service.UserService;
 
 /**
  * The Class AddressViewModel.
+ * @author Rupesh
  */
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class AddressViewModel {
